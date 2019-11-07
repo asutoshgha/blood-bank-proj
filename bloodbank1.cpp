@@ -142,7 +142,7 @@ public:
 		cout<<endl;
 		cout<<"Name: "<<name<<endl;
 		cout<<"Email: "<<email<<endl;
-		cout<<"Phone No.: "<<phone_no<<endl;￼
+		cout<<"Phone No.: "<<phone_no<<endl;
 		cout<<"Aadhar No.: "<<aadhar_no<<endl;
 		cout<<"Roll No.: "<<roll<<endl;
 		cout<<"Blood Group: "<<blood_group<<endl;
