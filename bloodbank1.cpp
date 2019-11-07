@@ -142,7 +142,7 @@ public:
 		cout<<endl;
 		cout<<"Name: "<<name<<endl;
 		cout<<"Email: "<<email<<endl;
-		cout<<"Phone No.: "<<phone_no<<endl;
+		cout<<"Phone No.: "<<phone_no<<endl;￼
 		cout<<"Aadhar No.: "<<aadhar_no<<endl;
 		cout<<"Roll No.: "<<roll<<endl;
 		cout<<"Blood Group: "<<blood_group<<endl;
@@ -210,13 +210,51 @@ int main(){
 	int ch;
 	while(1)
 	{
-		cout << "1->Search by name \n2->Search by Aadhar Number\n3-Total count of each blood group\n4->Exit\nEnter your choice\n";
+		cout << "1-Add new user to the database\n2->Search by name \n3->Search by Aadhar Number\n4-Total count of each blood group\n5->Exit\nEnter your choice\n";
 		cin >> ch;
 		unordered_map<string,vector<Donor>>::iterator itr2=blood_list.begin();
 		unordered_map<string,vector<Donor>>::iterator itr3=blood_list.end();
+		string name,phonenum,email,addhar_no,blood_group,dept,lst_dt_of_bd;
+						long int rollnum;
+						int num_of_blood;
 		switch(ch)
 		{
 			case 1:
+								
+						cout<<"enter name=";
+						cin>>name;
+						cout<<"enter phonenum:";
+        				cin>>phonenum;
+						cout<<"enter email:";
+						cin>>email;
+						cout<<"enter addhar_no:";
+						cin>>addhar_no;
+						cout<<"enter blood group:";
+						cin>>blood_group;
+						cout<<"Enter dept:";
+						cin>>dept;
+						cout<<"enter rollnum:";
+						cin>>rollnum;
+						cout<<"Enter blood in ml:";
+						cin>>num_of_blood;
+						cout<<"Enter the last donation:";
+						cin>>lst_dt_of_bd;
+						name_donors.insert({name,Donor(name,rollnum,phonenum,email,addhar_no,blood_group,dept,num_of_blood,lst_dt_of_bd)});
+						aadhar_donors.insert({addhar_no,Donor(name,rollnum,phonenum,email,addhar_no,blood_group,dept,num_of_blood,lst_dt_of_bd)});
+						if(1){
+						auto itr=blood_list.find(blood_group);
+						
+						if(itr == blood_list.end()){	
+							vector<Donor> donor_dt;
+							donor_dt.push_back(Donor(name,rollnum,phonenum,email,addhar_no,blood_group,dept,num_of_blood,lst_dt_of_bd));
+							blood_list.insert({blood_group,donor_dt});
+						}
+					else{
+						itr->second.push_back(Donor(name,rollnum,phonenum,email,addhar_no,blood_group,dept,num_of_blood,lst_dt_of_bd));
+						}
+						}
+					break;
+			case 2:
 			cout<<"Enter the name to be searched:"<<endl;
 			cin>>temp;
 			
@@ -228,7 +266,7 @@ int main(){
 				p->second.print();
 			}
 			break;
-			case 2:
+			case 3:
 			cout<<"Enter the Aadhar Number to be searched:"<<endl;
 			cin>>temp;
 			
@@ -240,7 +278,7 @@ int main(){
 				t->second.print();
 			}
 			break;
-			case 3:			
+			case 4:			
 					while(itr2 != itr3){
 						cout<<itr2->first<<endl;
 						auto ptr=itr2->second.begin();
@@ -253,7 +291,7 @@ int main(){
 						cout<<endl;
 					}
 			break;
-			case 4:
+			case 5:
 				exit(1);
 			    break;
 			default:
