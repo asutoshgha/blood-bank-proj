@@ -200,6 +200,9 @@ int main(){
 			itr->second.push_back(Donor(name,rollnum,phonenum,email,addhar_no,blood_group,dept,num_of_blood,lst_dt_of_bd));
 		}
 	}			
+	infile.close();
+	ofstream fout;
+	fout.open("input.txt", std::ios::app);
 	unordered_map<string,Donor>::iterator p;
 	unordered_map<string,Donor>::iterator t;
 	for(p=name_donors.begin();p!=name_donors.end();p++){
@@ -223,22 +226,31 @@ int main(){
 								
 						cout<<"enter name=";
 						cin>>name;
+						fout<<name;
 						cout<<"enter phonenum:";
         				cin>>phonenum;
+						fout<<phonenum;
 						cout<<"enter email:";
 						cin>>email;
+						fout<<email;
 						cout<<"enter addhar_no:";
 						cin>>addhar_no;
+						fout<<addhar_no;
 						cout<<"enter blood group:";
 						cin>>blood_group;
+						fout<<blood_group;
 						cout<<"Enter dept:";
 						cin>>dept;
+						fout<<dept;
 						cout<<"enter rollnum:";
 						cin>>rollnum;
+						fout<<rollnum;
 						cout<<"Enter blood in ml:";
 						cin>>num_of_blood;
+						fout<<num_of_blood;
 						cout<<"Enter the last donation:";
 						cin>>lst_dt_of_bd;
+						fout<<lst_dt_of_bd;
 						name_donors.insert({name,Donor(name,rollnum,phonenum,email,addhar_no,blood_group,dept,num_of_blood,lst_dt_of_bd)});
 						aadhar_donors.insert({addhar_no,Donor(name,rollnum,phonenum,email,addhar_no,blood_group,dept,num_of_blood,lst_dt_of_bd)});
 						if(1){
@@ -298,4 +310,5 @@ int main(){
 					cout<<"The option choosen is invalid.\n";
 		}
         }        	
+		fout.close();
 }
