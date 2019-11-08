@@ -290,18 +290,23 @@ int main(){
 				t->second.print();
 			}
 			break;
-			case 4:			
+			case 4:	if(1)		
+					{	
+					int sum=0;
 					while(itr2 != itr3){
-						cout<<itr2->first<<endl;
+						sum=0;
+						cout<<itr2->first;
 						auto ptr=itr2->second.begin();
 						auto ptr1=itr2->second.end();
 						while(ptr != ptr1){
-							ptr->print();
+							sum=sum+ptr->get_no_of_blood_donate();
 							ptr++;
 						}
+						cout << "\t"<<sum ; 
 						itr2++;
 						cout<<endl;
 					}
+			}
 			break;
 			case 5:
 				exit(1);
