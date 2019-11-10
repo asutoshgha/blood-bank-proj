@@ -138,7 +138,14 @@ public:
 	{
 	    return last_date_of_blood_donation;
 	}
-	void print(){
+	void print1()
+	{
+		cout<<endl;
+		cout<<"Name: "<<name<<endl;
+		cout << "Phone no.:" << phone_no <<endl;
+	}
+	void print()
+	{
 		cout<<endl;
 		cout<<"Name: "<<name<<endl;
 		cout<<"Email: "<<email<<endl;
@@ -202,18 +209,19 @@ int main(){
 	}			
 	infile.close();
 	ofstream fout;
-	fout.open("input.txt", std::ios::app);
+	fout.open("input.txt", ios::app);
 	unordered_map<string,Donor>::iterator p;
 	unordered_map<string,Donor>::iterator t;
 	for(p=name_donors.begin();p!=name_donors.end();p++){
 		p->second.print();
 	}
-	
+	ifstream infile;
+	infile.open("input.txt");
 	string temp;
 	int ch;
 	while(1)
 	{
-		cout << "1-Add new user to the database\n2->Search by name \n3->Search by Aadhar Number\n4-Total count of each blood group\n5->Exit\nEnter your choice\n";
+		cout << "1-Add new user to the database\n2->Search by name \n3->Search by Aadhar Number\n4->Total count of each blood group\n5->Name and Phone no. according to blood group\n6->Exit\nEnter your choice\n";
 		cin >> ch;
 		unordered_map<string,vector<Donor>>::iterator itr2=blood_list.begin();
 		unordered_map<string,vector<Donor>>::iterator itr3=blood_list.end();
@@ -223,34 +231,35 @@ int main(){
 		switch(ch)
 		{
 			case 1:
-								
+						if(fout.is_open()){		
 						cout<<"enter name=";
 						cin>>name;
-						fout<<name;
+						fout<<name<<endl;
 						cout<<"enter phonenum:";
         				cin>>phonenum;
-						fout<<phonenum;
+						fout<<phonenum<<endl;
 						cout<<"enter email:";
 						cin>>email;
-						fout<<email;
+						fout<<email<<endl;
 						cout<<"enter addhar_no:";
 						cin>>addhar_no;
-						fout<<addhar_no;
+						fout<<addhar_no<<endl;
 						cout<<"enter blood group:";
 						cin>>blood_group;
-						fout<<blood_group;
+						fout<<blood_group<<endl;
 						cout<<"Enter dept:";
 						cin>>dept;
-						fout<<dept;
+						fout<<dept<<endl;
 						cout<<"enter rollnum:";
 						cin>>rollnum;
-						fout<<rollnum;
+						fout<<rollnum<<endl;
 						cout<<"Enter blood in ml:";
 						cin>>num_of_blood;
-						fout<<num_of_blood;
+						fout<<num_of_blood<<endl;
 						cout<<"Enter the last donation:";
 						cin>>lst_dt_of_bd;
-						fout<<lst_dt_of_bd;
+						fout<<lst_dt_of_bd<<endl;
+						fout.close();
 						name_donors.insert({name,Donor(name,rollnum,phonenum,email,addhar_no,blood_group,dept,num_of_blood,lst_dt_of_bd)});
 						aadhar_donors.insert({addhar_no,Donor(name,rollnum,phonenum,email,addhar_no,blood_group,dept,num_of_blood,lst_dt_of_bd)});
 						if(1){
@@ -265,40 +274,44 @@ int main(){
 						itr->second.push_back(Donor(name,rollnum,phonenum,email,addhar_no,blood_group,dept,num_of_blood,lst_dt_of_bd));
 						}
 						}
+						}
 					break;
 			case 2:
-			cout<<"Enter the name to be searched:"<<endl;
-			cin>>temp;
-			
-			if (name_donors.find(temp) == name_donors.end()) 
-			cout << "Element Not Present\n"; 
-		    	else
-			{
-				p=name_donors.find(temp);
-				p->second.print();
-			}
-			break;
+				cout<<"Enter the name to be searched:"<<endl;
+				cin>>temp;
+				
+				if (name_donors.find(temp) == name_donors.end()) 
+				cout << "Element Not Present\n"; 
+			    	else
+				{
+					p=name_donors.find(temp);
+					p->second.print();
+				}
+				break;
 			case 3:
-			cout<<"Enter the Aadhar Number to be searched:"<<endl;
-			cin>>temp;
-			
-			if (aadhar_donors.find(temp) == aadhar_donors.end()) 
-			cout << "Element Not Present\n"; 
-		    	else
-			{
-				t=aadhar_donors.find(temp);
-				t->second.print();
-			}
-			break;
-			case 4:	if(1)		
-					{	
+				cout<<"Enter the Aadhar Number to be searched:"<<endl;
+				cin>>temp;
+				
+				if (aadhar_donors.find(temp) == aadhar_donors.end()) 
+				cout << "Element Not Present\n"; 
+			    	else
+				{
+					t=aadhar_donors.find(temp);
+					t->second.print();
+				}
+				break;
+			case 4:	
+				if(1)		
+				{	
 					int sum=0;
-					while(itr2 != itr3){
+					while(itr2 != itr3)
+					{
 						sum=0;
 						cout<<itr2->first;
 						auto ptr=itr2->second.begin();
 						auto ptr1=itr2->second.end();
-						while(ptr != ptr1){
+						while(ptr != ptr1)
+						{
 							sum=sum+ptr->get_no_of_blood_donate();
 							ptr++;
 						}
@@ -306,14 +319,32 @@ int main(){
 						itr2++;
 						cout<<endl;
 					}
-			}
-			break;
+				}
+				break;
 			case 5:
+				if(1)
+				{	
+					while(itr2 != itr3)
+					{
+						cout<<itr2->first;
+						auto ptr=itr2->second.begin();
+						auto ptr1=itr2->second.end();
+						while(ptr != ptr1)
+						{
+							ptr->print1();
+							ptr++;
+						} 
+						cout <<"\t\t\t";
+						cout << "There are "<< itr2->second.size() << "people with " << itr2->first;
+						itr2++;
+						cout<<endl;
+					}
+				}
+			        break;
+			case 6:
 				exit(1);
-			    break;
 			default:
-					cout<<"The option choosen is invalid.\n";
+				cout<<"The option choosen is invalid.\n";
 		}
         }        	
-		fout.close();
 }
