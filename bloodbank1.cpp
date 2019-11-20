@@ -215,7 +215,6 @@ int main(){
 	for(p=name_donors.begin();p!=name_donors.end();p++){
 		p->second.print();
 	}
-	ifstream infile;
 	infile.open("input.txt");
 	string temp;
 	int ch;
