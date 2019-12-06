@@ -160,6 +160,48 @@ public:
 	}
 
 };
+class Receiver:public Roll,public Name,public Department,public Blood_group,public User
+{
+protected:
+    int no_of_blood_receive;
+    string last_date_of_blood_recieved;
+public:
+	Receiver(string name,long int rollnum,string phone_no,string email,string aadhar_no,string blood_group,string dept,int num_of_blood,string lst_dt_of_bd):Roll(rollnum),User(phone_no,email,aadhar_no),Name(name),Department(dept),Blood_group(blood_group)
+    {
+        no_of_blood_receive=num_of_blood;
+        last_date_of_blood_recieved=lst_dt_of_bd;
+	}
+        void set_no_of_blood_receive(int n)
+	{
+	    no_of_blood_receive=n;
+	}
+	void set_last_date_of_blood_donation(string d)
+	{
+	    last_date_of_blood_recieved=d;
+	}
+	int get_no_of_blood_receive()
+	{
+	    return no_of_blood_receive;
+	}
+	string get_last_date_of_blood_recieved()
+	{
+	    return last_date_of_blood_recieved;
+	}
+	void print(){
+		cout<<endl;
+		cout<<"Name: "<<name<<endl;
+		cout<<"Email: "<<email<<endl;
+		cout<<"Phone No.: "<<phone_no<<endl;
+		cout<<"Aadhar No.: "<<aadhar_no<<endl;
+		cout<<"Roll No.: "<<roll<<endl;
+		cout<<"Blood Group: "<<blood_group<<endl;
+		cout<<"Department: "<<department<<endl;
+		cout<<"Amount of blood received: "<<no_of_blood_receive<<endl;
+		cout<<"Last Date of Blood recieved: "<<last_date_of_blood_recieved<<endl;
+		cout<<endl;
+	}
+
+};
 int main(){
 	int data;
     	cout<<"           WELCOME TO  BLOOD BANK MANAGEMENT SYSTEM    " <<endl;
